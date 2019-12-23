@@ -6,6 +6,8 @@ function myTime(){
     const hour = date.getHours();
 //seconds
     const seconds = date.getSeconds();
+//minute
+const minute = date.getMinutes();
 
 //convert military time to standard time function
     const convertTime = () => {
@@ -24,21 +26,19 @@ function myTime(){
     const nightOrDay = amPm();
 
 //add '0' to seconds first integer
-    const newSecond = () => {
-        if(seconds < 10){
+    const zeroPlace = (digit) => {
+        if(digit < 10){
             return 0;
         }else{
             return '';
         }
     };
-    const firstDigit = newSecond();
+    const firstDigitSec = zeroPlace(seconds);
+    const firstDigitMin = zeroPlace(minute);
 
 
 //store conversion in a variable
     const standardTime = convertTime();
-//minute
-    const minute = date.getMinutes();
-
 //Day
     const day = date.getDay();
 //Integer of Day
@@ -53,9 +53,15 @@ function myTime(){
     const weekMatch = daysOfweek[day];
 
 //show time on HTML document
-    document.getElementById('main').innerHTML = `${standardTime}:${minute}:${firstDigit}${seconds}${nightOrDay}<br/>
+document.getElementById('main').innerHTML =
+`<span class="standard">${standardTime}</span>:${firstDigitMin}${minute}:${firstDigitSec}${seconds}${nightOrDay}<br/>
 ${weekMatch} - ${match} ${dayNmb}`;
 }
+const btn = document.getElementById('btn');
+function militaryTime(){
+
+}
+btn.addEventListener('click',()=> console.log('cake'));
 setInterval(myTime, 1000);
 
 
