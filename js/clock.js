@@ -36,8 +36,7 @@ const minute = date.getMinutes();
     const firstDigitSec = zeroPlace(seconds);
     const firstDigitMin = zeroPlace(minute);
 
-
-//store conversion in a variable
+//store conversion in a variable i.e standard time
     const standardTime = convertTime();
 //Day
     const day = date.getDay();
@@ -53,15 +52,17 @@ const minute = date.getMinutes();
     const weekMatch = daysOfweek[day];
 
 //show time on HTML document
-document.getElementById('main').innerHTML =
-`<span class="standard">${standardTime}</span>:${firstDigitMin}${minute}:${firstDigitSec}${seconds}${nightOrDay}<br/>
-${weekMatch} - ${match} ${dayNmb}`;
+document.getElementById('hour').innerHTML =`${standardTime}`;
+document.getElementById('military').innerHTML =`${hour}`;
+document.getElementById('minute').innerHTML =`: ${firstDigitMin}${minute}`;
+document.getElementById('seconds').innerHTML =`: ${firstDigitSec}${seconds} ${nightOrDay}`;
+document.getElementById('days-weeks').innerHTML =`${weekMatch} - ${match} ${dayNmb}`;
 }
 const btn = document.getElementById('btn');
-function militaryTime(){
-
-}
-btn.addEventListener('click',()=> console.log('cake'));
+btn.addEventListener('click',()=> {
+    document.getElementById('military').classList.toggle('hide');
+    document.getElementById('hour').classList.toggle('hide');
+});
 setInterval(myTime, 1000);
 
 
