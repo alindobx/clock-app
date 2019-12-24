@@ -27,7 +27,9 @@ body {
     text-align: center;
     max-width: 50%;
 }
-
+#days-weeks {
+    font-size:2em;
+}
 #btn {
      padding: 8px;
      width: 166px;

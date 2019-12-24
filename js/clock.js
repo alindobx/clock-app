@@ -2,6 +2,8 @@
 function myTime(){
 //Date object
 const date = new Date();
+//year
+const year = date.getFullYear();
 //hour
 const hour = date.getHours();
 //seconds
@@ -53,7 +55,7 @@ document.getElementById('military').innerHTML =`${hour}`;
 document.getElementById('minute').innerHTML =`: ${firstDigitMin}${minute}`;
 document.getElementById('seconds').innerHTML =`: ${firstDigitSec}${seconds} ${nightOrDay}`;
 document.getElementById('days-weeks').innerHTML =`${weekMatch}`;
-document.getElementById('monthDate').innerHTML = `${match} ${dayNmb}`
+document.getElementById('monthDate').innerHTML = `${match} ${dayNmb}, ${year}`
 }
 const btn = document.getElementById('btn');
 btn.addEventListener('click',()=> {
