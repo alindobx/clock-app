@@ -1,49 +1,41 @@
-//Problem: Create a clock that displays
-function myTime() {
-  //Date object
-  const date = new Date();
-  //year
-  const year = date.getFullYear();
-  //hour
-  const hour = date.getHours();
-  //seconds
-  const seconds = date.getSeconds();
-  //minute
-  const minute = date.getMinutes();
-  //convert military time to standard time function
-  const convertTime = () => {
-    if (hour >= 12) {
-      return hour - 12;
-    } else if (hour === 0) {
-      return 12;
-    } else {
-      return hour;
-    }
-  };
-  // AM or PM function
-  const amPm = () => {
-    return hour >= 12 ? "pm" : "am";
-  };
-  const nightOrDay = amPm();
-  //add '0' to seconds first integer
-  const zeroPlace = digit => {
-    if (digit < 10) {
-      return 0;
-    } else {
-      return "";
-    }
-  };
-  const firstDigitSec = zeroPlace(seconds);
-  const firstDigitMin = zeroPlace(minute);
-  //store conversion in a variable i.e standard time
-  const standardTime = convertTime();
-  //Day
+
+const convertTime = (hour) => {
+  if (hour >= 12) {
+    return hour - 12;
+  } else if (hour === 0) {
+    return 12;
+  } else {
+    return hour;
+  }
+};
+
+const amPm = hour => {
+  return hour >= 12 ? "pm" : "am";
+};
+
+const formatDigit = digit => {
+  if (digit < 10) {
+    return 0;
+  } else {
+    return "";
+  }
+};
+
+const displayDay = (date) => {
+  const daysOfweek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
   const day = date.getDay();
-  //Integer of Day
-  const dayNmb = date.getDate();
-  //Month
-  const month = date.getMonth();
-  //Month Array
+  const weekMatch = daysOfweek[day];
+  document.getElementById("days-weeks").innerHTML = `${weekMatch}`;
+};
+const displayDate = (date) => {
   const months = [
     "January",
     "February",
@@ -58,33 +50,34 @@ function myTime() {
     "November",
     "December"
   ];
+  const year = date.getFullYear();
+  const dayNumber = date.getDate();
+  const month = date.getMonth();
   const match = months[month];
-  // Days of the Week Array
-  const daysOfweek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  const weekMatch = daysOfweek[day];
-  //X-mas message
-  //check and see if the date is Decemeber 25
-  month === 11 && dayNmb === 25
-    ? (document.getElementById("xmas").innerHTML = "Merry X-mas to All")
-    : //show time on HTML document
-      (document.getElementById("hour").innerHTML = `${standardTime}`);
+  document.getElementById("monthDate").innerHTML = `${match} ${dayNumber}, ${year}`;
+};
+const displayTime =(date) =>{
+  const hour = date.getHours();
+  const seconds = date.getSeconds();
+  const minute = date.getMinutes();
+  const nightOrDay = amPm(hour);
+  const firstDigitSec = formatDigit(seconds);
+  const firstDigitMin = formatDigit(minute);
+  //store conversion in a variable standardTime
+  const standardTime = convertTime(hour);
+  document.getElementById("hour").innerHTML = `${standardTime}`;
   document.getElementById("military").innerHTML = `${hour}`;
   document.getElementById("minute").innerHTML = `: ${firstDigitMin}${minute}`;
-  document.getElementById(
-    "seconds"
-  ).innerHTML = `: ${firstDigitSec}${seconds} ${nightOrDay}`;
-  document.getElementById("days-weeks").innerHTML = `${weekMatch}`;
-  document.getElementById(
-    "monthDate"
-  ).innerHTML = `${match} ${dayNmb}, ${year}`;
+  document.getElementById("seconds").innerHTML = `: ${firstDigitSec}${seconds} ${nightOrDay}`;
+};
+
+function myTime() {
+
+  const date = new Date();
+
+  displayTime(date);
+  displayDay(date);
+  displayDate(date);
 }
 
 document.getElementById("btn").addEventListener("click", () => {
