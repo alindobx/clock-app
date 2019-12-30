@@ -11,5 +11,5 @@
 I worked out every issue</p>
 <h2>Author</h2>
 <ul>
-  <li><strong>Anthony Lindo</strong> "-" <em>Full-Stack Software Developer - <a href="https://www.linkedin.com/in/anthony-lindo/">LinkedIn</a></li>
+  <li><strong>Anthony Lindo</strong> - <em>Full-Stack Software Developer - <a href="https://www.linkedin.com/in/anthony-lindo/">LinkedIn</a></li>
 </ul>
